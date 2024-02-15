@@ -1,7 +1,5 @@
 import discord, os, re, requests
 import vt, asyncio
-from flask import Flask
-from threading import Thread
 
 from discord.message import Message
 
@@ -10,27 +8,12 @@ client = discord.Client(intents=intents)
 intents.members = True
 intents.message_content = True
 intents.messages = True
-app = Flask('')
 
-
-@app.route('/')
-def home():
-  return "funcionando"
-
-
-def run():
-  app.run(host='0.0.0.0', port=8080)
-
-
-def keep_alive():
-  t = Thread(target=run)
-  t.start()
 
 
 @client.event
 async def on_ready():
   print('We have logged in as {0.user}'.format(client))
-  keep_alive()
 
 
 @client.event
